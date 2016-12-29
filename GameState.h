@@ -7,7 +7,8 @@
 void loseGame(int row, int col, int num1, int num2, char userArray[row][col], char editorArray[row][col]);
 ///Win a game
 void winGame(int row, int col,char editorArray[row][col], char userArray[row][col]);
-
+///ranking the winners
+void Ranking (int row, int col);
 
 #endif
 

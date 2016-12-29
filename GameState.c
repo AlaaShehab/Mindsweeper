@@ -55,6 +55,89 @@ void winGame(int row, int col,char editorArray[row][col], char userArray[row][co
             }
         }
     }
+    Ranking(row, col);
     return;
 
+}
+
+void Ranking (int row, int col){
+ char data[900], userName[900];
+    char scoreChar[900];
+    int counter=0, flag = 0;
+    FILE *frank;
+    int i=0,j=0,m=0;
+    frank = fopen("user Name.txt","r");
+    // here we count number of lines in the file to make an array with the same size
+    while (fgets(data,900,frank)){
+        counter++;
+    }
+    fclose(frank);
+    struct userData userDataArray[counter+1];
+
+    frank = fopen("user Name.txt","r");
+    // reading the name and score ,separate them and putting them in the array of structures
+    while (fgets(data,900,frank)){
+        i=0;
+        j=0;
+        while (data[i] != ','){
+            userDataArray[m].name[i]=data[i];
+            i++;
+        }
+        userDataArray[m].name[i]='\0';
+        i++;
+        while (data[i] != '\n'){
+            scoreChar[j]=data[i];
+            j++;
+            i++;
+        }
+        scoreChar[j]='\0';
+        userDataArray[m].score = atoi(scoreChar);
+        m++;
+    }
+    fclose(frank);
+
+    int userScore = (pow(row,4)*pow(col,4))/((currentTime-startTime)*user.movesNumber);
+    printf("you won 😊 \nYour score is %d\nEnter your name:\n",userScore);
+    scanf("%s",userName);
+    //comparing the user name with the saved names and see if it is the first time for him to play or not
+    for(i=0;i<counter;i++){
+       if(strcmp(userName,userDataArray[i].name) == 0) {
+            flag = 1;
+         if (userDataArray[i].score < userScore ){
+            userDataArray[i].score = userScore;
+         }
+
+       }
+    }
+    if (flag == 0){
+        strcpy(userDataArray[counter].name ,userName);
+        userDataArray[counter].score = userScore;
+        counter= counter+1;
+    }
+    frank = fopen ("user Name.txt","w");
+
+    int minIndex;
+    struct userData  temp;
+    //sorting the users by their scores
+    for (i=0;i<counter;i++){
+        minIndex = i;
+        for  (j=i+1;j<counter;j++){
+            if (userDataArray[j].score > userDataArray[minIndex].score){
+                minIndex = j;
+            }
+
+       }
+       temp = userDataArray[i];
+       userDataArray[i] = userDataArray[minIndex];
+       userDataArray[minIndex] = temp;
+    }
+    //printing the leader board
+    for (i=0;i<counter;i++){
+        printf("%s",userDataArray[i].name);
+        printf("%d\n",userDataArray[i].score);
+        fprintf(frank,"%s,",userDataArray[i].name);
+        fprintf(frank,"%d\n",userDataArray[i].score);
+    }
+
+    fclose(frank);
 }
