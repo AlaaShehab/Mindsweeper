@@ -70,9 +70,10 @@ void openingOpenCell (int row, int col, int num1, int num2, char editorArray[row
                     if (a>=0 && a<row && b>=0 && b<col){
                         if (userArray[a][b] != 'F' && editorArray[a][b] != '*'){
                             userArray[a][b] = editorArray[a][b];
-                        }else if (editorArray[a][b]=='*'){
+                        }
+                        else if (editorArray[a][b]=='*' && userArray[a][b] != 'F'){
                             lose =1; ///if a flag is wrong then the user loses
-                            return;
+                        return;
                         }
                     }
                 }

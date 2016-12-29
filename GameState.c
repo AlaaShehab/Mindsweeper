@@ -53,11 +53,9 @@ void loseGame(int row, int col, int num1, int num2, char userArray[row][col], ch
     return;
 }
 
-
 ///Win a game
 void winGame(int row, int col,char editorArray[row][col], char userArray[row][col]){
     int i,j;
-    printf("        CONGRATULATIONS YOU WON THE GAME\n\n");
 ///on winning open open all cells and replace those with mine with a Flag 'F
     for (i=0;i<row;i++){
         for (j=0;j<col;j++){
@@ -67,6 +65,7 @@ void winGame(int row, int col,char editorArray[row][col], char userArray[row][co
         }
     }
     printUserArray(row,col,userArray);
+    printf("        CONGRATULATIONS YOU WON THE GAME\n\n");
     Ranking(row, col);
 
     char action;
@@ -120,8 +119,10 @@ void Ranking (int row, int col){
     fclose(frank);
 
     int userScore = (pow(row,4)*pow(col,4))/((currentTime-startTime)*user.movesNumber);
-    printf("Your score is %d\nEnter your name:\n",userScore);
-    scanf("%s",userName);
+    printf("Your score is %d\n",userScore);
+    scanUserName(userName,900);
+    printf("%s",userName);
+   // scanf("%s",userName);
     //comparing the user name with the saved names and see if it is the first time for him to play or not
     for(i=0;i<counter;i++){
        if(strcmp(userName,userDataArray[i].name) == 0) {

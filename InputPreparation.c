@@ -64,7 +64,7 @@ void scanGridSize(int *row, int *col){
     }
 ///check the grid boundaries
     if(*row<2 || *row>30 || *col<2 || *col>30){
-        printf("INVALID INPUT!! Make sure you enter row number, then space and enter column number\nMinimum is 2 and Maximum 30");
+        printf("INVALID INPUT!! Make sure you enter row number, then space and enter column number\n");
        scanGridSize(&*row, &*col);
     }
     else {
@@ -137,5 +137,20 @@ void scanNewAction(char *action){
     }
         return;
 
+
+}
+
+ void scanUserName(char strName[], int len){
+
+    char letter;
+    int i=0;
+    printf("Please Enter your Name (Maximum length is 20): ");
+    while ((letter=getchar()) != '\n'){
+        if (i<len){
+            strName[i++]= letter;
+        }
+    }
+    strName[i]='\0';
+    changeToLower(strName,i);
 
 }
