@@ -4,31 +4,32 @@
 #include"EnteringGame.h"
 #include"Global_Variables.h"
 
-//int initialize = 1;
 void startGame(){
     char entergame;
     int load = 0;
 ///check whether the user is loading or starting a new game
     printf("Press N to start a new game or L to load game : \n");
-    scanEnterGame(&entergame);
-    printf("\n");
+    while(1){
+        scanEnterGame(&entergame);
+        printf("\n");
 
 ///change input to lowercase
-    changeToLowercase(&entergame);
+        changeToLowercase(&entergame);
 ///start time of the game
-    time(&startTime);
+        time(&startTime);
 
-
-
-    if (entergame == 'l'){
+        if (entergame == 'l'){
 ///change some flags for entering and loading game
-        load = 1;
-        initialize = 1;
-        loadGame(load);
-        return;
-    }
-    else if (entergame !='n'){
-        printf("Invalid Input, A new game will start\n\n");
+            load = 1;
+            initialize = 1;
+            loadGame(load);
+            return;
+        }
+        else if (entergame !='n'){
+            printf("Invalid Input, Enter again : \n\n");
+        } else {
+            break;
+        }
     }
 
 ///enter grid size
