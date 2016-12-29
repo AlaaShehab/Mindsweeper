@@ -106,6 +106,7 @@ void scanInput(int *num1, int *num2, char *operation,int row,int col){
     changeToLowercase(&*operation);
 ///check validity of input
     if ((*operation != 'o' && *operation != 'f'&& *operation != 'a' && *operation != 'u' && *operation != '?' && *operation != 's')||(*num1 <0 || *num1>row)||(*num2<0 || *num2>col)){
+        printf("INVALID INPUT!! Make sure you enter row number, enter space then enter column number followed by space and the operation ")
         scanInput(&*num1, &*num2, &*operation, row, col);
     }
     else{
