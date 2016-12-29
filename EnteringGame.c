@@ -121,8 +121,6 @@ void enterGame(int row,int col,char editorArray[row][col],char userArray[row][co
 ///check if the user wins.
         if ((user.FlagsNumber+user.questionMarkNumber+closedCellNumber) == minesNumber){
             winGame(row,col,editorArray,userArray);
-            printUserArray(row,col,userArray);
-            printInterface(load);
     }
     }
 

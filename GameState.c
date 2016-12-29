@@ -39,6 +39,17 @@ void loseGame(int row, int col, int num1, int num2, char userArray[row][col], ch
 
         }
     }
+
+        char action;
+    scanNewAction(&action);
+
+    if (action == '0'){
+        return;
+    }
+    else{
+        startGame();
+    }
+
     return;
 }
 
@@ -46,7 +57,7 @@ void loseGame(int row, int col, int num1, int num2, char userArray[row][col], ch
 ///Win a game
 void winGame(int row, int col,char editorArray[row][col], char userArray[row][col]){
     int i,j;
-    printf("        CONGRATULATIONS YOU WON THE GAME");
+    printf("        CONGRATULATIONS YOU WON THE GAME\n\n");
 ///on winning open open all cells and replace those with mine with a Flag 'F
     for (i=0;i<row;i++){
         for (j=0;j<col;j++){
@@ -57,6 +68,17 @@ void winGame(int row, int col,char editorArray[row][col], char userArray[row][co
     }
     printUserArray(row,col,userArray);
     Ranking(row, col);
+
+    char action;
+    scanNewAction(&action);
+
+    if (action == '0'){
+        return;
+    }
+    else{
+        startGame();
+    }
+
     return;
 
 }
@@ -98,7 +120,7 @@ void Ranking (int row, int col){
     fclose(frank);
 
     int userScore = (pow(row,4)*pow(col,4))/((currentTime-startTime)*user.movesNumber);
-    printf("you won 😊 \nYour score is %d\nEnter your name:\n",userScore);
+    printf("Your score is %d\nEnter your name:\n",userScore);
     scanf("%s",userName);
     //comparing the user name with the saved names and see if it is the first time for him to play or not
     for(i=0;i<counter;i++){
@@ -118,6 +140,9 @@ void Ranking (int row, int col){
     int minIndex;
     struct userData  temp;
     //sorting the users by their scores
+    printf("\n\n");
+    printf("     Leader Board\n\n");
+    printf("   Name       Score\n");
     for (i=0;i<counter;i++){
         minIndex = i;
         for  (j=i+1;j<counter;j++){
@@ -131,9 +156,6 @@ void Ranking (int row, int col){
        userDataArray[minIndex] = temp;
     }
     //printing the leader board
-    printf("\n\n");
-    printf("     Leader Board\n\n");
-    printf("   Name      Score\n");
     for (i=0;i<counter;i++){
         printf("%d  %s         ",i+1,userDataArray[i].name);
         printf("%d\n",userDataArray[i].score);

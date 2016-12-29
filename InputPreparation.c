@@ -10,7 +10,6 @@ void changeToLowercase(char *operation){
     }
     return;
 }
-
 ///change name input to lowercase in order to compare during ranking.
 void changeToLower(char strName[],int length){
     int i=0;
@@ -65,6 +64,7 @@ void scanGridSize(int *row, int *col){
     }
 ///check the grid boundaries
     if(*row<2 || *row>30 || *col<2 || *col>30){
+        printf("INVALID INPUT!! Make sure you enter row number, then space and enter column number\nMinimum is 2 and Maximum 30");
        scanGridSize(&*row, &*col);
     }
     else {
@@ -76,7 +76,7 @@ void scanGridSize(int *row, int *col){
 void scanInput(int *num1, int *num2, char *operation,int row,int col){
 
     char tempStr[100];
-    char str[20];
+ //   char str[20];
     char *pTempStr;
     int i=0;
     char input;
@@ -116,3 +116,26 @@ void scanInput(int *num1, int *num2, char *operation,int row,int col){
 
 }
 
+void scanNewAction(char *action){
+
+    char tempStr[20];
+    int i=0;
+    char input;
+
+    printf("\n\n");
+    printf("Press any key to start a new game or 0 to exit\n\n");
+///input cell number and operation in an array with spaces separation
+    getchar();
+
+    while((input = getchar())!= '\n'){
+        if (i<20){
+            if (i==0){
+            *action=input;
+            }
+        i++;
+        }
+    }
+        return;
+
+
+}

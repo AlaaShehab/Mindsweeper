@@ -19,6 +19,7 @@ void printInterface(int load){
 void printUserArray(int row, int col, char userArray[row][col]){
     int i,j;
     int counter=0;
+    system("cls");
     printf("    Mine Sweeper ^_^\n\n");
 
     for (i=-1;i<col;i++){    ///printing numbers of columns of the user array
