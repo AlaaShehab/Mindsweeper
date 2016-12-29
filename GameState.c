@@ -55,6 +55,7 @@ void winGame(int row, int col,char editorArray[row][col], char userArray[row][co
             }
         }
     }
+    printUserArray(row,col,userArray);
     Ranking(row, col);
     return;
 
@@ -103,9 +104,7 @@ void Ranking (int row, int col){
     for(i=0;i<counter;i++){
        if(strcmp(userName,userDataArray[i].name) == 0) {
             flag = 1;
-         if (userDataArray[i].score < userScore ){
-            userDataArray[i].score = userScore;
-         }
+            userDataArray[i].score += userScore;
 
        }
     }
@@ -132,8 +131,11 @@ void Ranking (int row, int col){
        userDataArray[minIndex] = temp;
     }
     //printing the leader board
+    printf("\n\n");
+    printf("     Leader Board\n\n");
+    printf("   Name      Score\n");
     for (i=0;i<counter;i++){
-        printf("%s",userDataArray[i].name);
+        printf("%d  %s         ",i+1,userDataArray[i].name);
         printf("%d\n",userDataArray[i].score);
         fprintf(frank,"%s,",userDataArray[i].name);
         fprintf(frank,"%d\n",userDataArray[i].score);
